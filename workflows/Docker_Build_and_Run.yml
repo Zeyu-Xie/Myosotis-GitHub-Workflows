@@ -1,0 +1,23 @@
+name: Docker Build and Run
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  docker-build-and-run:
+    runs-on: ubuntu-latest
+    name: Docker Build and Run
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    # - name: Print Address
+    #   run: pwd
+
+    - name: Build Docker Image
+      run: docker build -t python_3.10 ./python\ 3.10
+
+    - name: Run Docker Container
+      run: docker run -v ./python\ 3.10:/app -t python_3.10
